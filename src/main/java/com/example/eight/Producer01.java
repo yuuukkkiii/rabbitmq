@@ -24,14 +24,19 @@ public class Producer01 {
         arguments.put("x-dead-letter-exchange", DEAD_EXCHANGE);
 //        设置死信routingKey
         arguments.put("x-dead-letter-routing-key", "lisi");
+
+//   设置正常队列的长度限制
+ //       arguments.put("x-max-length", 6);
+
+
         channel.queueDeclare(NORMAL_QUEUE,false,false,false,arguments);
 
 //        私信消息 设置TTL时间
-        AMQP.BasicProperties properties=new AMQP.BasicProperties().builder().expiration("10000").build();
+        //AMQP.BasicProperties properties=new AMQP.BasicProperties().builder().expiration("10000").build();
 
         for (int i = 1; i < 11; i++) {
             String message="info"+i;
-            channel.basicPublish(NORMAL_EXCHANGE,"zhangsan", properties, message.getBytes());
+            channel.basicPublish(NORMAL_EXCHANGE,"zhangsan", null, message.getBytes());
         }
     }
 }
