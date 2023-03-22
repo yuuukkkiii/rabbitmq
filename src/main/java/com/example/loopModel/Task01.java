@@ -25,6 +25,7 @@ public class Task01 {
         Scanner scanner=new Scanner(System.in);
         while(scanner.hasNext()){
             String message =scanner.next();
+            new String();
             /*
              * 发送一个消费
              * 1.发送到哪个交换机
